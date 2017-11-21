@@ -1,6 +1,6 @@
 const assert = require('assert');
 const { webhookJob } = require('./index');
-const MockModel = require('../mock-model');
+const MockModel = require('./mock-model');
 const sinon = require('sinon');
 
 const LONG_TIME_AGO = '2017-08-10T10:54:53.450Z';
