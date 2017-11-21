@@ -1,6 +1,6 @@
 const {literal} = require('sequelize');
 const Debug = require('debug');
-const debug = Debug('backstroke:job:operation-creator');
+const debug = Debug('backstroke:job:operation-dispatcher');
 
 const AUTOMATIC = 'AUTOMATIC';
 const UPDATE_SECONDS = 30;
