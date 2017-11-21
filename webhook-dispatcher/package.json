@@ -1,0 +1,26 @@
+{
+  "name": "webhook-dispatcher",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "start:once": "node index.js once",
+    "test": "NODE_ENV=test jest --watch",
+    "test-ci": "NODE_ENV=test CI=true jest"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "jest": "^21.2.1",
+    "node-fetch": "^1.7.3",
+    "pg": "^7.4.0",
+    "redis": "^2.8.0",
+    "repl": "^0.1.3",
+    "rsmq": "^0.8.3",
+    "sequelize": "^4.22.7",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "sinon": "^4.1.2"
+  }
+}
