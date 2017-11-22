@@ -44,7 +44,7 @@ module.exports.webhookJob = async function webhookJob(Link, User, WebhookQueue, 
       headSha = await fetchSHAForUpstreamBranch(link);
     } catch (err) {
       debug(`Error fetching upstream sha for %o: %o`, link.id, err.message);
-      headSha = null;
+      return false;
     }
 
     // Before enqueuing an update, make sure that the commit hash actually changed of the upstream

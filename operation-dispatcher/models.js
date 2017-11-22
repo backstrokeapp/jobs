@@ -1,3 +1,4 @@
+const uuid = require('uuid');
 const Redis = require('redis');
 const redis = Redis.createClient(process.env.REDIS_URL);
 
