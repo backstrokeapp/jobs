@@ -1,5 +1,6 @@
 const uuid = require('uuid');
 const Redis = require('redis');
+if (!process.env.REDIS_URL) { throw new Error('No REDIS_URL environment variable set!'); }
 const redis = Redis.createClient(process.env.REDIS_URL);
 
 const ONE_HOUR_IN_SECONDS = 60 * 60;
@@ -93,6 +94,7 @@ const WebhookQueue = {
 WebhookQueue.initialize();
 
 const Sequelize = require('sequelize');
+if (!process.env.DATABASE_URL) { throw new Error('No DATABASE_URL environment variable set!'); }
 const schema = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   dialectOptions: {
