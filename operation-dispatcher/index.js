@@ -4,8 +4,7 @@ const debug = Debug('backstroke:job:operation-dispatcher');
 
 const AUTOMATIC = 'AUTOMATIC';
 const UPDATE_SECONDS = 30;
-// const WEBHOOK_SYNC_DURATION = process.env.WEBHOOK_SYNC_DURATION || '10 minutes';
-const WEBHOOK_SYNC_DURATION = process.env.WEBHOOK_SYNC_DURATION || '1 seconds';
+const WEBHOOK_SYNC_DURATION = process.env.WEBHOOK_SYNC_DURATION || '10 minutes';
 
 // Every 30 seconds, try to update a link.
 module.exports = function main(Link, User, WebhookQueue, fetchSHAForUpstreamBranch) {
@@ -42,7 +41,7 @@ module.exports.webhookJob = async function webhookJob(Link, User, WebhookQueue, 
   const responses = links.map(async link => {
     let headSha;
     try {
-      headSha = await fetchSHAForUpstreamBranch(link);
+     headSha = await fetchSHAForUpstreamBranch(link);
     } catch (err) {
       debug(`Error fetching upstream sha for %o: %o`, link.id, err.message);
       return false;

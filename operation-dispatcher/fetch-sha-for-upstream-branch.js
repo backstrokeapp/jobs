@@ -58,6 +58,12 @@ module.exports = async function fetchSHAForUpstreamBranch({
     return null;
   }
 
+  // Ensure that results was an array, if an error was received we want to know about it.
+  if (!Array.isArray(results)) {
+    throw new Error(`Results for link ${id} was not an array, erroring: ${JSON.stringify(results)}`);
+    return null;
+  }
+
   debug('Link %o, Response from getting HEAD of %o branch on %o/%o: %o results', id, upstreamBranch, upstreamOwner, upstreamRepo, results.length);
 
   // The branch has no commits? No commit hash, so return null.
