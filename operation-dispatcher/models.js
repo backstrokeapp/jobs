@@ -67,9 +67,11 @@ const WebhookQueue = {
     return new Promise((resolve, reject) => {
       redisQueue.sendMessage({qname: this.queueName, message: JSON.stringify(data)}, (err, id) => {
         if (err) {
+          require('debug')('backstroke:job:operation-dispatcher:enqueue')('Error enqueuing link %o: %o', data && data.link && data.link.id, err);
           reject(err);
         } else {
           // Resolves the message id.
+          require('debug')('backstroke:job:operation-dispatcher:enqueue')('Enqueued %o as %o', data && data.link && data.link.id, id);
           resolve(id);
         }
       });
