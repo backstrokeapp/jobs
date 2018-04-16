@@ -56,12 +56,12 @@ module.exports.webhookJob = async function webhookJob(Link, User, WebhookQueue, 
 
     // Link hasn't been synced, ever, since no 'last sha' value is present. Sync it.
     } else if (!link.upstreamLastSHA) {
-      await WebhookQueue.push({type: AUTOMATIC, user: link.owner, link});
+      await WebhookQueue.push({type: AUTOMATIC, user: link.owner, link, fromRequest: null});
       debug(`Update enqueued successfully for link %o. REASON = FIRST_SYNC`, link.id);
 
     // The upstream has new commits since the last polling attempt. Sync it.
     } else if (link.upstreamLastSHA !== headSha) {
-      await WebhookQueue.push({type: AUTOMATIC, user: link.owner, link});
+      await WebhookQueue.push({type: AUTOMATIC, user: link.owner, link, fromRequest: null});
       debug(`Update enqueued successfully for link %o. REASON = UPSTREAM_NEW_COMMITS`, link.id);
 
     } else {

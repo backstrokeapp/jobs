@@ -84,6 +84,7 @@ describe('webhook dispatcher job', function() {
     assert.equal(MockWebhookQueue.queue[0].item.type, 'AUTOMATIC');
     assert.equal(MockWebhookQueue.queue[0].item.link.id, link.id);
     assert.equal(MockWebhookQueue.queue[0].item.user.id, link.ownerId);
+    assert.equal(MockWebhookQueue.queue[0].item.fromRequest, null);
 
     // And the last synced time was updated.
     assert.notEqual((await Link.findById(link.id)).lastSyncedAt, LONG_TIME_AGO);
@@ -99,6 +100,7 @@ describe('webhook dispatcher job', function() {
     assert.equal(MockWebhookQueue.queue[0].item.type, 'AUTOMATIC');
     assert.equal(MockWebhookQueue.queue[0].item.link.id, linkExistingUpstreamSHA.id);
     assert.equal(MockWebhookQueue.queue[0].item.user.id, linkExistingUpstreamSHA.ownerId);
+    assert.equal(MockWebhookQueue.queue[0].item.fromRequest, null);
 
     // And the last synced time was updated.
     assert.notEqual((await Link.findById(linkExistingUpstreamSHA.id)).lastSyncedAt, LONG_TIME_AGO);
