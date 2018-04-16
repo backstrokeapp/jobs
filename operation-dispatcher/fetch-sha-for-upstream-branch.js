@@ -42,11 +42,7 @@ module.exports = async function fetchSHAForUpstreamBranch({
   // Fetch the latest commit in the branch `upstreamBranch`.
   let results = [];
   try {
-    const resp = await fetch(`https://api.github.com/repos/${encodeURIComponent(upstreamOwner)}/${encodeURIComponent(upstreamRepo)}/commits`, {
-      qs: {
-        sha: upstreamBranch,
-        per_page: 1,
-      },
+    const resp = await fetch(`https://api.github.com/repos/${encodeURIComponent(upstreamOwner)}/${encodeURIComponent(upstreamRepo)}/commits?sha=${upstreamBranch}&per_page=1`, {
       headers: {
         'Authorization': `Bearer ${owner.accessToken}`,
       },
